@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  api:
+    build: ./api
+    ports:
+      - '5000:5000'
+    depends_on:
+      - postgres
+    restart: always
+    volumes:
+      - ./api:/app
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: '5432'
+      POSTGRES_DB: test_db
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: test_db
+    volumes:
+      - postgres_data:/var/lib/postgres
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8888:8080'
+
+volumes:
+  postgres_data:
