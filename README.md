@@ -44,13 +44,11 @@ Content-Length: 21
 
 Пример запроса с помощью python requests
 
-На респонс можно посмотреть с помощью print(response.json())
-
 ```
 import requests
+
 response = requests.post('http://127.0.0.1:5000/get_quiz',
                     json={"questions_num": 10}
                     )
-print(response.json())
 ```
 
